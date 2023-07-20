@@ -1,5 +1,8 @@
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
+import Cat404 from "../../../public/assets/404 cat.svg"
+
+
 export default async function Producto() {
 
     return (
@@ -13,7 +16,7 @@ export default async function Producto() {
                 </div>
                 <div>
                     <div className="w-full py-10 bg-gray-200 rounded-lg">
-                        <Image className='hover:rotate-12 transition-all' src="/assets/404 cat.svg" alt="" />
+                        <Image className='hover:rotate-12 transition-all' src={Cat404} alt="" />
                     </div>
                 </div>
             </div>

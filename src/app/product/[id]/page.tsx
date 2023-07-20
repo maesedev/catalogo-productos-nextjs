@@ -1,19 +1,21 @@
 "use client"
-import { useGetProduct } from "../../../../hooks/useGetProduct"
+import NoProductSection from "@/components/noproduct"
 import { useGetPrettiePrice } from "../../../../hooks/useGetPrettiePrice"
-import { useState } from "react"
+import { useGetProduct } from "../../../../hooks/useGetProduct"
 import Image from "next/image"
+import AddToCartButton from "@/components/AddToCartButton"
+
 export default function ProductPage({ params }: { params: { id: number } }) {
 
-    const [Product] = useGetProduct(params.id)
-    const [onCart, setOnCart] = useState<number>(0)
-    const Price = useGetPrettiePrice(Product?.price)
+    const Product = useGetProduct(params.id)
 
     if (!Product || Product?.invisible) {
         return (
-            <h1>no product</h1>
+            <NoProductSection />
         )
     }
+
+    const Price = "$" + (Product.price.toLocaleString("es-ES")) + ",00"
 
     return (
 
@@ -22,41 +24,42 @@ export default function ProductPage({ params }: { params: { id: number } }) {
                 <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
                     <div className="grid grid-cols-2 gap-4 md:grid-cols-1 ">
                         <Image
+                            priority
                             alt="Les Paul"
-                            src={"/images/audifonos" + Product.imageUrl}
+                            src={Product.mainImage}
                             className="aspect-square w-full rounded-xl object-contain cursor-pointer transition-all hover:opacity-80  hover:scale-105"
                         />
 
                         <div className="grid grid-cols-2 gap-4 lg:mt-4">
                             <Image
                                 alt="Les Paul"
-                                src={"/images/audifonos" + Product.images[0]}
-                                className="aspect-square w-full rounded-xl object-cover  cursor-pointer transition-all hover:opacity-80 hover:scale-105"
+                                src={Product.images[0]}
+                                className="aspect-square w-full rounded-xl object-contain  cursor-pointer transition-all hover:opacity-80 hover:scale-105"
                             />
 
                             {
                                 Product.images[1] ?
                                     <Image
                                         alt="Les Paul"
-                                        src={"/images/audifonos" + Product.images[1]}
-                                        className="aspect-square w-full rounded-xl object-cover  cursor-pointer transition-all hover:opacity-80 hover:scale-105"
+                                        src={Product.images[1]}
+                                        className="aspect-square w-full rounded-xl object-contain  cursor-pointer transition-all hover:opacity-80 hover:scale-105"
                                     />
-                                    :<></>}
-                                    {
-                                    Product.images[2] ?
+                                    : <></>}
+                            {
+                                Product.images[2] ?
 
-                                        <Image
-                                            alt="Les Paul"
-                                            src={"/images/audifonos" + Product.images[2]}
-                                            className="aspect-square w-full rounded-xl object-cover  cursor-pointer transition-all hover:opacity-80 hover:scale-105"
-                                        />
-                                        :<></>}{
-                                        Product.images[3] ?
-                                        <Image
-                                            alt="Les Paul"
-                                            src={"/images/audifonos" + Product.images[3]}
-                                            className="aspect-square w-full rounded-xl object-cover  cursor-pointer transition-all hover:opacity-80 hover:scale-105"
-                                        />:<></>
+                                    <Image
+                                        alt="Les Paul"
+                                        src={Product.images[2]}
+                                        className="aspect-square w-full rounded-xl object-contain  cursor-pointer transition-all hover:opacity-80 hover:scale-105"
+                                    />
+                                    : <></>}{
+                                Product.images[3] ?
+                                    <Image
+                                        alt="Les Paul"
+                                        src={Product.images[3]}
+                                        className="aspect-square w-full rounded-xl object-contain  cursor-pointer transition-all hover:opacity-80 hover:scale-105"
+                                    /> : <></>
                             }
                         </div>
                     </div>
@@ -100,7 +103,7 @@ export default function ProductPage({ params }: { params: { id: number } }) {
                         <div className="mt-4">
                             <div className="prose max-w-none">
                                 <p>
-                                    {Product.tagline }
+                                    {Product.tagline}
                                 </p>
                             </div>
 
@@ -221,34 +224,13 @@ export default function ProductPage({ params }: { params: { id: number } }) {
                             </fieldset> 
 
 */}
+                            <AddToCartButton Product={Product} />
+                            <div className="w-full flex justify-center">
 
-                            <div className="mt-8 flex gap-4">
-                                <button
-                                    onClick={(e) => { e.preventDefault(); setOnCart((onCart != 0 ? onCart - 1 : 0)) }}
-                                    className="block rounded bg-gray-500 px-5 py-3 text-xs font-medium text-white hover:bg-gray-600"
-                                >
-                                    -
-                                </button>
-                                <div>
-                                    <label htmlFor="quantity" className="sr-only">Qty</label>
-
-                                    <input
-                                        onChange={() => { }}
-                                        type="number"
-                                        id="quantity"
-                                        min="1"
-                                        value={onCart}
-                                        className="w-12 rounded border-gray-200 py-3 text-center text-xs [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                                    />
-                                </div>
-
-                                <button
-                                    onClick={(e) => { e.preventDefault(); setOnCart(onCart + 1) }}
-                                    className="block rounded bg-green-600 px-5 py-3 text-xs font-medium text-white hover:bg-green-500"
-                                >
-                                    Añadir al carrito
-                                </button>
+                                <a className="m-5 inline-block bg-pink-600 hover:scale-95 hover:bg-pink-500 py-3 px-8 rounded-lg text-white" href="/checkout">Ir al checkout</a>
                             </div>
+
+
                         </form>
                     </div>
                 </div>

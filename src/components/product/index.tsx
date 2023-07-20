@@ -10,6 +10,7 @@ interface options {
 }
 
 export default function Product({ id, title, price, description, mainImageURL }: options) {
+    
     return (
 
         <div className="flex flex-row items-center grow-[4]  w-64 sm:flex-col sm:w-[230px] gap-6 m-5 bg-slate-50">
