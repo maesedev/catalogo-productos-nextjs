@@ -2,11 +2,12 @@
 import { useGetProduct } from "../../../../hooks/useGetProduct"
 import { useGetPrettiePrice } from "../../../../hooks/useGetPrettiePrice"
 import { useState } from "react"
-
+import Image from "next/image"
 export default function ProductPage({ params }: { params: { id: number } }) {
 
     const [Product] = useGetProduct(params.id)
     const [onCart, setOnCart] = useState<number>(0)
+    const Price = useGetPrettiePrice(Product?.price)
 
     if (!Product || Product?.invisible) {
         return (
@@ -20,14 +21,14 @@ export default function ProductPage({ params }: { params: { id: number } }) {
             <div className="relative mx-auto max-w-screen-xl px-4 py-8">
                 <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
                     <div className="grid grid-cols-2 gap-4 md:grid-cols-1 ">
-                        <img
+                        <Image
                             alt="Les Paul"
                             src={"/images/audifonos" + Product.imageUrl}
                             className="aspect-square w-full rounded-xl object-contain cursor-pointer transition-all hover:opacity-80  hover:scale-105"
                         />
 
                         <div className="grid grid-cols-2 gap-4 lg:mt-4">
-                            <img
+                            <Image
                                 alt="Les Paul"
                                 src={"/images/audifonos" + Product.images[0]}
                                 className="aspect-square w-full rounded-xl object-cover  cursor-pointer transition-all hover:opacity-80 hover:scale-105"
@@ -35,7 +36,7 @@ export default function ProductPage({ params }: { params: { id: number } }) {
 
                             {
                                 Product.images[1] ?
-                                    <img
+                                    <Image
                                         alt="Les Paul"
                                         src={"/images/audifonos" + Product.images[1]}
                                         className="aspect-square w-full rounded-xl object-cover  cursor-pointer transition-all hover:opacity-80 hover:scale-105"
@@ -44,14 +45,14 @@ export default function ProductPage({ params }: { params: { id: number } }) {
                                     {
                                     Product.images[2] ?
 
-                                        <img
+                                        <Image
                                             alt="Les Paul"
                                             src={"/images/audifonos" + Product.images[2]}
                                             className="aspect-square w-full rounded-xl object-cover  cursor-pointer transition-all hover:opacity-80 hover:scale-105"
                                         />
                                         :<></>}{
                                         Product.images[3] ?
-                                        <img
+                                        <Image
                                             alt="Les Paul"
                                             src={"/images/audifonos" + Product.images[3]}
                                             className="aspect-square w-full rounded-xl object-cover  cursor-pointer transition-all hover:opacity-80 hover:scale-105"
@@ -93,7 +94,7 @@ export default function ProductPage({ params }: { params: { id: number } }) {
                                 </div>
                             </div>
 
-                            <p className="text-lg font-bold">{useGetPrettiePrice(Product.price)}</p>
+                            <p className="text-lg font-bold">{Price}</p>
                         </div>
 
                         <div className="mt-4">

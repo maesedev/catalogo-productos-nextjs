@@ -1,3 +1,4 @@
+import Image from "next/image"
 export default function Header() {
     return (
 
@@ -5,7 +6,7 @@ export default function Header() {
             <div className="mx-auto max-w-screen-xl px-4 py-2 sm:px-6 lg:px-8">
                 <div className="flex items-center sm:justify-between sm:gap-4">
                     <a href="/" className="hover:scale-105 transition-all">
-                        <img  className="h-12" src="https://images.ctfassets.net/c63hsprlvlya/7otp3Ofpdr8sCedYnSewGn/da3393cae2fdc7f3cedca1f0c1b46fc1/logo-vercel-svgrepo-com.svg" alt="" />
+                        <Image  className="h-12" src="https://images.ctfassets.net/c63hsprlvlya/7otp3Ofpdr8sCedYnSewGn/da3393cae2fdc7f3cedca1f0c1b46fc1/logo-vercel-svgrepo-com.svg" alt="" />
                     </a>
                     
                     <div
@@ -84,7 +85,7 @@ export default function Header() {
                             className="group flex shrink-0 items-center rounded-lg transition"
                         >
                             <span className="sr-only">Menu</span>
-                            <img
+                            <Image
                                 alt="Man"
                                 src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
                                 className="h-10 w-10 rounded-full object-cover"
