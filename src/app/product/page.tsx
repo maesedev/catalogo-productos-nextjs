@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 import Cat404 from "../../../public/assets/404 cat.svg"
 
 
-export default async function Producto() {
+export default function Producto() {
 
     return (
         <section className="px-4 py-24 mx-auto max-w-7xl">

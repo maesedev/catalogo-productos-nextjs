@@ -1,6 +1,17 @@
-import Image from "next/image";
 
+import CheckOutProducts from "@/components/checkoutProducts";
+import WhatsappRedirectButton from "@/components/WhatsappRedirectButton";
+import TotalPrice from "@/components/totalprice";
 export default function Checkout() {
+
+    const Text = `
+    a
+    a
+    a
+    a
+    a
+    `
+    const WhatsAppApiUrl = "https://wa.me/573212971693?text=" + encodeURI(Text)
     return (
         <section>
             <h1 className="sr-only">Checkout</h1>
@@ -11,21 +22,20 @@ export default function Checkout() {
                         <div className="flex items-center gap-4">
                             <span className="h-10 w-10 rounded-full bg-blue-700"></span>
 
-                            <h2 className="font-medium text-gray-900">BambooYou</h2>
+                            <h2 className="font-medium text-gray-900">Ya estas a un paso de completar tu pedido.</h2>
                         </div>
 
-                        
-                        <div>
-                            <p className="text-2xl font-medium tracking-tight text-gray-900">
-                                $99.99
-                            </p>
 
-                            <p className="mt-1 text-sm text-gray-600">For the purchase of</p>
+                        <TotalPrice />
+                        <div>
+
+
+                            <p className="mt-5  mb-3 text-sm text-gray-600">For the purchase of</p>
+                            <CheckOutProducts />
                         </div>
 
                         <div>
                             <div className="flow-root">
-                                
                             </div>
                         </div>
                     </div>
@@ -88,91 +98,9 @@ export default function Checkout() {
                                 />
                             </div>
 
-                            <fieldset className="col-span-6">
-                                <legend className="block text-sm font-medium text-gray-700">
-                                    Card Details
-                                </legend>
+                            <WhatsappRedirectButton WhatsAppApiUrl={WhatsAppApiUrl} />
 
-                                <div className="mt-1 -space-y-px rounded-md bg-white shadow-sm">
-                                    <div>
-                                        <label htmlFor="CardNumber" className="sr-only"> Card Number </label>
 
-                                        <input
-                                            type="text"
-                                            id="CardNumber"
-                                            placeholder="Card Number"
-                                            className="relative mt-1 w-full rounded-t-md border-gray-200 focus:z-10 sm:text-sm"
-                                        />
-                                    </div>
-
-                                    <div className="flex">
-                                        <div className="flex-1">
-                                            <label htmlFor="CardExpiry" className="sr-only"> Card Expiry </label>
-
-                                            <input
-                                                type="text"
-                                                id="CardExpiry"
-                                                placeholder="Expiry Date"
-                                                className="relative w-full rounded-es-md border-gray-200 focus:z-10 sm:text-sm"
-                                            />
-                                        </div>
-
-                                        <div className="-ms-px flex-1">
-                                            <label htmlFor="CardCVC" className="sr-only"> Card CVC </label>
-
-                                            <input
-                                                type="text"
-                                                id="CardCVC"
-                                                placeholder="CVC"
-                                                className="relative w-full rounded-ee-md border-gray-200 focus:z-10 sm:text-sm"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-
-                            <fieldset className="col-span-6">
-                                <legend className="block text-sm font-medium text-gray-700">
-                                    Billing Address
-                                </legend>
-
-                                <div className="mt-1 -space-y-px rounded-md bg-white shadow-sm">
-                                    <div>
-                                        <label htmlFor="Country" className="sr-only">Country</label>
-
-                                        <select
-                                            id="Country"
-                                            className="relative w-full rounded-t-md border-gray-200 focus:z-10 sm:text-sm"
-                                        >
-                                            <option>England</option>
-                                            <option>Wales</option>
-                                            <option>Scotland</option>
-                                            <option>France</option>
-                                            <option>Belgium</option>
-                                            <option>Japan</option>
-                                        </select>
-                                    </div>
-
-                                    <div>
-                                        <label className="sr-only" htmlFor="PostalCode"> ZIP/Post Code </label>
-
-                                        <input
-                                            type="text"
-                                            id="PostalCode"
-                                            placeholder="ZIP/Post Code"
-                                            className="relative w-full rounded-b-md border-gray-200 focus:z-10 sm:text-sm"
-                                        />
-                                    </div>
-                                </div>
-                            </fieldset>
-
-                            <div className="col-span-6">
-                                <button
-                                    className="block w-full rounded-md bg-black p-2.5 text-sm text-white transition hover:shadow-lg"
-                                >
-                                    Pay Now
-                                </button>
-                            </div>
                         </form>
                     </div>
                 </div>

@@ -11,11 +11,12 @@ export default function Home() {
       <Categorias />
 
       <div className='py'>
-        <h2 className='text-center font-semibold text-lg mt-6'>¡Escucha la perfección! Encuentra los mejores audífonos y accesorios tecnológicos aquí.</h2>
+        <p className='text-center font-bold text-5xl mt-6'>Todo en tecnología</p>
+        <h2 className='text-center font-semibold text-lg mb-10'>Encuentra los mejores audífonos y accesorios tecnológicos aquí.</h2>
       </div>
 
 
-      <div className='flex flex-row flex-wrap justify-center gap-6 max-w-5xl py-6'>
+      <div className='flex flex-col sm:flex-row flex-wrap justify-center gap-6 max-w-5xl py-6'>
         {
           Products.map((item, index) => (
             item.invisible ?

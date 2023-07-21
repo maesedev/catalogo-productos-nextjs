@@ -1,35 +1,69 @@
+"use client"
 import Image from "next/image";
+import useGetImages from "../../../hooks/useGetImages";
+import { PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/24/solid"
+import { useState } from "react";
+
+export default function CheckOutProducts() {
+    const { LY021 } = useGetImages()
+
+    const getProductsFromLocalStorage = (): Array<any> => {
+        let productsCart: string = window.localStorage.getItem("Cart") ?? "[]"
+        return JSON.parse(productsCart)
+    }
+
+    const removeZeroCuantityProducts = (): void => {
+
+        let productsCart: string = window.localStorage.getItem("Cart") ?? "[]"
+        let products: Array<any> = JSON.parse(productsCart)
+
+        products = products.filter((item) => item.cantidad != 0)
+        console.log(products);
+
+        window.localStorage.setItem("Cart", JSON.stringify(products))
+
+    }
 
 
-export default function CheckOutProducts({}:{}) {
+    const [] = useState<number>(0)
+
+    const Products = getProductsFromLocalStorage()
+
     return (
         <ul className="-my-4 divide-y divide-gray-100">
 
-            <li className="flex items-center gap-4 py-4">
-                <Image
-                    src="https://yt3.ggpht.com/p0uS87qlZrugeEmIJgt1mSQw9IUdOcnAaUC1-rQLK1q9MnAj5lTmQ6vW9_2blnBbTTilutrKMgA=s88-c-k-c0x00ffffff-no-rj"
-                    height={50}
-                    width={50}
-                    alt=""
-                    className="h-16 w-16 rounded object-cover"
-                />
+            {
+                Products.map((item,index) => (
 
-                <div>
-                    <h3 className="text-sm text-gray-900">Basic Tee 6-Pack</h3>
+                    <li key={index} className="flex items-center justify-between gap-4 py-4">
+                        <div className="flex items-center">
+                            <Image
+                                src={item.mainImage}
+                                height={50}
+                                width={50}
+                                alt=""
+                                className="h-16 w-16 rounded object-cover"
+                            />
 
-                    <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
-                        <div>
-                            <dt className="inline">Size:</dt>
-                            <dd className="inline">XXS</dd>
+                            <div>
+                                <h3 className="text-sm text-gray-900">{item.title}</h3>
+
+                                <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
+                                    <div>
+                                        <dt className="inline">Color:</dt>
+                                        <dd className="inline">Negro</dd>
+                                    </div>
+                                </dl>
+                            </div>
                         </div>
-
-                        <div>
-                            <dt className="inline">Color:</dt>
-                            <dd className="inline">White</dd>
+                        <div className="flex">
+                            <div className="cursor-pointer"><MinusCircleIcon height={25} width={25} /></div>
+                            <div className="mx-4">{item.cantidad}</div>
+                            <div className="cursor-pointer"><PlusCircleIcon height={25} width={25} /></div>
                         </div>
-                    </dl>
-                </div>
-            </li>
+                    </li>
+                ))
+            }
 
         </ul>
     )
