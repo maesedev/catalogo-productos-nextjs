@@ -1,33 +1,38 @@
 "use client"
+
 import Image from "next/image";
 import useGetImages from "../../../hooks/useGetImages";
 import { PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/24/solid"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CheckOutProducts() {
-    const { LY021 } = useGetImages()
+    const [Products,setProducts] = useState<Array<any>>([])
 
-    const getProductsFromLocalStorage = (): Array<any> => {
-        let productsCart: string = window.localStorage.getItem("Cart") ?? "[]"
-        return JSON.parse(productsCart)
-    }
+    useEffect(()=>{
+        const getProductsFromLocalStorage = (): Array<any> => {
+            let productsCart: string = window.localStorage.getItem("Cart") ?? "[]"
+            return JSON.parse(productsCart)
+        }
+    
+        const removeZeroCuantityProducts = (): void => {
+    
+            let productsCart: string = window.localStorage.getItem("Cart") ?? "[]"
+            let products: Array<any> = JSON.parse(productsCart)
+    
+            products = products.filter((item) => item.cantidad != 0)
+            console.log(products);
+    
+            window.localStorage.setItem("Cart", JSON.stringify(products))
+    
+        
+            
+        }
+        setProducts(getProductsFromLocalStorage())
+        
+    },[])
 
-    const removeZeroCuantityProducts = (): void => {
-
-        let productsCart: string = window.localStorage.getItem("Cart") ?? "[]"
-        let products: Array<any> = JSON.parse(productsCart)
-
-        products = products.filter((item) => item.cantidad != 0)
-        console.log(products);
-
-        window.localStorage.setItem("Cart", JSON.stringify(products))
-
-    }
 
 
-    const [] = useState<number>(0)
-
-    const Products = getProductsFromLocalStorage()
 
     return (
         <ul className="-my-4 divide-y divide-gray-100">

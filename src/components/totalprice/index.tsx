@@ -1,22 +1,27 @@
 "use client"
+
+import { useEffect, useState } from "react"
+
 export default function TotalPrice() {
+    const [price,setPrice] = useState<string>("")
 
+    useEffect(()=>{
+
+        let productsCart: string  =  window.localStorage.getItem("Cart") ?? "[]" 
     
-    const getProductsFromLocalStorage = (): Array<any> => {
-        let productsCart: string  =  window.localStorage.getItem("Cart") ?? "[]"
-        return JSON.parse(productsCart)
-    }
-
-    let Products = getProductsFromLocalStorage()
-    let TotalPrice:number = 0
-
-    Products.forEach((item,index)=>{
-        TotalPrice += item.price * item.cantidad
-    })
+        let Products:Array<any> = JSON.parse(productsCart)
+        let TotalPrice:number = 0
+    
+        Products.forEach((item,index)=>{
+            TotalPrice += item.price * item.cantidad
+        })
+        setPrice(TotalPrice.toLocaleString("es-ES"))
+        
+    },[])
 
     return (
         <p className="text-2xl font-medium tracking-tight text-gray-900">
-            ${TotalPrice.toLocaleString("es-ES")},00
+            ${price},00
         </p>
     )
 }
