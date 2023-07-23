@@ -1,9 +1,9 @@
 "use client"
-import Image from "next/image"
 import Logo from "../../../public/assets/logo.svg"
-import SpaceShip from "../../../public/assets/spaceship.jpg"
+import SpaceShip from "../../../public/assets/spaceship.svg"
 import { ShoppingCartIcon } from "@heroicons/react/20/solid"
 import Categorias from "../categories"
+import Image from "next/image"
 
 export default function Header() {
     return (
@@ -20,7 +20,6 @@ export default function Header() {
                     >
                         <span className="sr-only">Menu</span>
                         <Image
-                            width={40}
                             alt="Man"
                             src={SpaceShip}
                             className="h-10 w-10 rounded-full object-cover"

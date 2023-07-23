@@ -1,8 +1,8 @@
 "use client"
 
-import Image from "next/image";
 import useGetImages from "../../../hooks/useGetImages";
 import { PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/24/solid"
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function CheckOutProducts() {

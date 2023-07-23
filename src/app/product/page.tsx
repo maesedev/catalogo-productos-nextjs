@@ -1,6 +1,7 @@
-import Image from 'next/image'
+
 import { redirect } from 'next/navigation'
 import Cat404 from "../../../public/assets/404 cat.svg"
+import Image from 'next/image'
 
 
 export default function Producto() {

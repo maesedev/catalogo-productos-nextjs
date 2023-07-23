@@ -1,6 +1,6 @@
 
-import { useGetPrettiePrice } from "../../../hooks/useGetPrettiePrice";
 import Image from "next/image";
+import { useGetPrettiePrice } from "../../../hooks/useGetPrettiePrice";
 interface options {
     id: number;
     title: string;
@@ -16,7 +16,7 @@ export default function Product({ id, title, price, description, mainImageURL }:
         <div className="flex flex-row items-center   sm:flex-col w-full sm:w-[220px]   bg-white p-2 hover:shadow-2xl hover:scale-105 transition-all">
             <div className="p-2">
                 <a href={"/product/" + id} className="">
-                    <Image className="h-64 w-auto rounded-3xl object-contain transition-all hover:scale-110" src={mainImageURL} alt={title} />
+                    <Image className="h-64 w-auto rounded-3xl object-contain transition-all hover:scale-110 hover:shadow-lg" src={mainImageURL} alt={title} />
                 </a>
             </div>
             <div className=" ">

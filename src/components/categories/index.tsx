@@ -4,7 +4,6 @@ import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
 import { ArrayCategorias } from '../../../hooks/useGetData'
-import Image from 'next/image'
 
 
 export default function Categorias() {

@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import WhatsAppImage from "../../../public/assets/whatsapp.png"
+import WhatsAppImage from "../../../public/assets/whatsapp.svg"
 
 export default function WhatsappRedirectButton({WhatsAppApiUrl}:{WhatsAppApiUrl:string}) {
     return (

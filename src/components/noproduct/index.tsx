@@ -1,4 +1,5 @@
-import Image from "next/image";
+
+import Image from "next/image"
 import Cat404 from "../../../public/assets/404 cat.svg"
 
 export default function NoProductSection(){
